@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <Notifications></Notifications>
     </div>
-  );
+  )
 }
 
 export default App;
