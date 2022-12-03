@@ -1,6 +1,8 @@
+import NotificationItem from './Notification'
+
 function Notifications() {
     return (
-        <p>notifications!</p>
+        <NotificationItem></NotificationItem>
     )
 }
 
