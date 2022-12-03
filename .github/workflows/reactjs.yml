@@ -39,9 +39,9 @@ jobs:
           cd app
           npm install
       - name: Build with ReactJs
-        run: npm script build
+        run: npm run build
       - name: Static HTML export with Next.js
-        run: npm script deploy
+        run: npm run deploy
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
