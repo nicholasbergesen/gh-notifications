@@ -6,7 +6,7 @@ export interface IGithubAccessToken {
 
 export class Auth {
     private static OAUTH_ACCESS_URL = process.env.REACT_APP_ACCESS_URL 
-            || process.env.NODE_ENV == "development" 
+            || process.env.NODE_ENV === "development" 
             ? "https://github.com/login/oauth/authorize?client_id=acba20c02c0651aec5f0&scope=notifications&redirect_url=http://127.0.0.1:3000/gh-notifications/"
             : "https://github.com/login/oauth/authorize?client_id=acba20c02c0651aec5f0&scope=notifications"
     private static CLIEND_ID = process.env.REACT_APP_CLIENT_ID || "acba20c02c0651aec5f0"
