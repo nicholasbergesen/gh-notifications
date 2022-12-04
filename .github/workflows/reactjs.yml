@@ -43,7 +43,7 @@ jobs:
           cd app
           npm run build
         env:
-          REACT_APP_HELLO: 'Set from the workflow'
+          HELLO: 'Set from the workflow'
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

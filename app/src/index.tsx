@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route, Routes } from "react-router-dom";
-import GitHubOAuth from './components/GitHubOAuth';
 import ShowText from './components/ShowText';
 
 const root = ReactDOM.createRoot(
@@ -15,7 +14,6 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
-        <Route path="/oauth" element={<GitHubOAuth />} />
         <Route path="/show" element={<ShowText />} />
         <Route path="/" element={<App />} />
       </Routes>

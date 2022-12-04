@@ -6,8 +6,8 @@ export interface IGithubAccessToken {
 
 export class Auth {
     private static OAUTH_ACCESS_URL = "https://github.com/login/oauth/authorize?client_id=acba20c02c0651aec5f0&scope=notifications"
-    private static CLIEND_ID = "acba20c02c0651aec5f0"
-    private static SECRET = "5759960a3199f0d2014559a294418f0004865ebb"
+    private static CLIEND_ID = process.env.CLIENT_ID || "acba20c02c0651aec5f0"
+    private static SECRET = process.env.CLIENT_SECRET "5759960a3199f0d2014559a294418f0004865ebb"
     private static githubAccessToken: IGithubAccessToken
     private static code: string
     public static IsAuthenitcated: boolean
