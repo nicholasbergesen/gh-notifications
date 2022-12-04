@@ -9,6 +9,7 @@ function App() {
   const code: string | null = searchParams.get("code")
 
   if (code) {
+    console.log(`Set ${code} in App.tsx`)
     Auth.setCode(code)
   }
   

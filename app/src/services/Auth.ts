@@ -22,9 +22,11 @@ export class Auth {
         }
 
         if (!this.code) {
+            console.log("Requesting code")
             window.location.href = this.OAUTH_ACCESS_URL
         }
 
+        console.log(`Requesting access_token for ${this.code}`)
         const response = await fetch("https://github.com/login/oauth/access_token", {
             method: 'POST',
             headers: {
@@ -34,8 +36,7 @@ export class Auth {
             body: JSON.stringify({
                 client_id: this.CLIEND_ID,
                 client_secret: this.SECRET,
-                code: this.code,
-                state: ""
+                code: this.code
             })
         })
 
@@ -48,10 +49,12 @@ export class Auth {
     }
 
     static setCode(code: string) {
+        console.log(`Set code ${this.code}`)
         this.code = code
     }
 
     static getCode() {
+        console.log(`Displaying code ${this.code}`)
         return this.code
     }
 }
