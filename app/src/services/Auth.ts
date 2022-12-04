@@ -50,4 +50,8 @@ export class Auth {
     static setCode(code: string) {
         this.code = code
     }
+
+    static getCode() {
+        return this.code
+    }
 }
