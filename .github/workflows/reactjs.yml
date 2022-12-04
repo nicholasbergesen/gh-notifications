@@ -18,39 +18,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: "16"
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Restore cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            .react/cache
-          key: ${{ runner.os }}-reactjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-reactjs-${{ hashFiles('**/package-lock.json') }}-
-      - name: Install dependencies
+      - uses: actions/configure-pages@v2
+
+      - name: Build
         run: |
           cd app
           npm install
-      - name: Build with ReactJs
-        run: |
-          cd app
           npm run build
         env:
-          HELLO: 'Set from the workflow'
+          REACT_APP_HELLO: 'Set from the workflow'
+          REACT_APP_ACCESS_URL: ${{ secrets.REACT_APP_ACCESS_URL }}
+          REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
+          REACT_APP_CLIENT_SECRET: ${{ secrets.REACT_APP_CLIENT_SECRET }}
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./app/build
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages

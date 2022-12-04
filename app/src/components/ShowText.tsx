@@ -1,6 +1,6 @@
 function ShowText() {
     return (<div>
-        Hello! {process.env.HELLO}
+        Hello! {process.env.REACT_APP_HELLO}
     </div>)
 }
 
