@@ -13,8 +13,8 @@ function Notifications() {
             setAccessToken(token)
             const notificationResponse = await fetch("https://api.github.com/notifications", {
                 headers: {
-                    'Authorization': token,
-                    "Access-Control-Allow-Origin": "*"
+                    'Accept': 'application/json',
+                    'Authorization': token
                 }
             })
             console.log(notificationResponse)
