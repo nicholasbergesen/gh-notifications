@@ -4,6 +4,7 @@ import Notifications from './components/Notifications'
 import { Auth } from './services/Auth';
 
 function App() {
+  // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams();
   const code: string = searchParams.get("code") ?? ""
 
