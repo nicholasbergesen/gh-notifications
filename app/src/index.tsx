@@ -5,20 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route, Routes } from "react-router-dom";
 import GitHubOAuth from './components/GitHubOAuth';
+import ShowText from './components/ShowText';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <HashRouter>
-    <React.StrictMode>
+  <React.StrictMode>
+    <HashRouter>
       <Routes>
-        <Route path="/gh-notifications/oauth/" element={<GitHubOAuth />}  />
-        <Route path="*" element={<App />} />
+        <Route path="/oauth" element={<GitHubOAuth />} />
+        <Route path="/show" element={<ShowText />} />
+        <Route path="/" element={<App />} />
       </Routes>
-    </React.StrictMode>
-  </HashRouter>
+    </HashRouter>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
