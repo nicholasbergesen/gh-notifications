@@ -1,38 +1,44 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Auth } from "../services/Auth"
+import './Notification.css'
 import { IFullNotification, INotification } from "../services/notifications"
 
 function NotificationItem(props: { notification: INotification }) {
     const [info, setInfo] = useState<IFullNotification>()
     const notification = props.notification
 
-    const getMore = async (url: string) => {
-        const token = await Auth.getGitHubAccessToken()
-        const response = await fetch(url, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': token
-            }
-        })
-        const jsonResult = await response.json()
-        setInfo(jsonResult);
-    }
+    useEffect(() => {
+        const getMore = async () => {
+            const token = await Auth.getGitHubAccessToken()
+            const response = await fetch(props.notification.subject.url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': token
+                }
+            })
+            const jsonResult = await response.json()
+            console.log(jsonResult)
+            setInfo(jsonResult);
+        }
 
-    const divStyle = {
-        border: '1px solid black'
-      };
+        getMore()
+    }, [props.notification.subject.url])
 
     return (
-        <div style={divStyle}>
-            <p>{notification.subject.title}</p>
-            <p>{notification.subject.type}</p>
-            <p>{notification.subject.url}</p>
-            <button onClick={() => getMore(notification.subject.url)}>Show</button>
-
-            <p>{info?.title}</p>
-            <p>{info?.state}</p>
-            <p>{info?.merged}</p>
-            <p>{info?.mergeable}</p>
+        <div className="notification-block">
+            <p>
+                <span className="strong label">Title: </span>{notification.subject.title}
+            </p>
+            <p>
+                <span className="strong label">Repo: </span>{notification.repository.full_name}
+            </p>
+            <p>
+                <span className="strong label">Type: </span>{notification.subject.type}
+            </p>
+            <p>
+                <span className="strong label">State: </span>{info?.state} {info?.draft ? "(Draft)" : ""}
+            </p>
+            <a href={info?.html_url}>View</a>
         </div>
     )
 }

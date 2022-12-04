@@ -1,0 +1,15 @@
+.notification-block {
+  display: block;
+  overflow-wrap: break-word;
+  border: 1px solid black;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.label {
+  color:antiquewhite;
+}
