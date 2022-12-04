@@ -29,6 +29,7 @@ function Notifications() {
     return (
         <>
             <NotificationItem></NotificationItem>
+            {Auth.getCode()}
             {JSON.stringify(notifications)}
 
         </>
