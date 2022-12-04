@@ -6,9 +6,9 @@ import { Auth } from './services/Auth';
 function App() {
   // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams();
-  const code: string = searchParams.get("code") ?? ""
+  const code: string | null = searchParams.get("code")
 
-  if (code !== "") {
+  if (code) {
     Auth.setCode(code)
   }
   
