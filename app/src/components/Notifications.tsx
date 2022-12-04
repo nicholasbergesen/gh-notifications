@@ -1,38 +1,39 @@
 import { useState, useEffect } from 'react';
 import { Auth } from '../services/Auth';
+import { INotification } from '../services/notifications';
 import NotificationItem from './Notification'
 
 function Notifications() {
-    const [notifications, setNotifications] = useState(null);
-    const [accessToken, setAccessToken] = useState<string>();
+    const [notifications, setNotifications] = useState<INotification[]>([]);
 
     useEffect(() => {
         const getNotifications = async () => {
             const token = await Auth.getGitHubAccessToken()
-            console.log(token)
-            setAccessToken(token)
             const notificationResponse = await fetch("https://api.github.com/notifications", {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': token
                 }
             })
-            console.log(notificationResponse)
             const notificationJson = await notificationResponse.json()
             setNotifications(notificationJson);
-            console.log(notifications)
         }
 
         getNotifications()
-    }, [accessToken, notifications])
+    }, [])
+
+    if (!notifications) {
+        return <div>Loading...</div>
+    }
 
     return (
-        <>
-            <NotificationItem></NotificationItem>
-            {Auth.getCode()}
-            {JSON.stringify(notifications)}
-
-        </>
+        <div>
+            {
+                notifications.map((notification, i) =>
+                    <NotificationItem key={notification.id} notification={notification}></NotificationItem>
+                )
+            }
+        </div>
     )
 }
 
