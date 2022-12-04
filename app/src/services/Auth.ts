@@ -20,30 +20,36 @@ export class Auth {
             return `${this.githubAccessToken.token_type} ${this.githubAccessToken.access_token}`
         }
 
-        if (!this.code) {
-            console.log("Requesting code")
-            window.location.href = this.OAUTH_ACCESS_URL
+        this.githubAccessToken = {
+            access_token: process.env.REACT_APP_SECRET_TEST || "",
+            scope: "",
+            token_type: "bearer"
         }
 
-        console.log(`Requesting access_token for ${this.code}`)
-        const response = await fetch("https://github.com/login/oauth/access_token", {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                client_id: this.CLIEND_ID,
-                client_secret: this.SECRET,
-                code: this.code
-            })
-        })
+        // if (!this.code) {
+        //     console.log("Requesting code")
+        //     window.location.href = this.OAUTH_ACCESS_URL
+        // }
 
-        if (!response.ok) {
-            console.error(await response.text())
-        }
+        // console.log(`Requesting access_token for ${this.code}`)
+        // const response = await fetch("https://github.com/login/oauth/access_token", {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         client_id: this.CLIEND_ID,
+        //         client_secret: this.SECRET,
+        //         code: this.code
+        //     })
+        // })
 
-        this.githubAccessToken = await response.json()
+        // if (!response.ok) {
+        //     console.error(await response.text())
+        // }
+
+        // this.githubAccessToken = await response.json()
         return `${this.githubAccessToken.token_type} ${this.githubAccessToken.access_token}`
     }
 

@@ -32,6 +32,7 @@ jobs:
           npm run build
         env:
           REACT_APP_HELLO: 'Set from the workflow'
+          REACT_APP_SECRET_TEST: ${{ secrets.REACT_APP_SECRET_TEST }}
           REACT_APP_ACCESS_URL: ${{ secrets.REACT_APP_ACCESS_URL }}
           REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
           REACT_APP_CLIENT_SECRET: ${{ secrets.REACT_APP_CLIENT_SECRET }}
