@@ -14,9 +14,8 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
-        <Route path="/gh-notifications/show" element={<ShowText />} />
-        <Route path="/gh-notifications/" element={<App />} />
-        <Route path="/" element={<ShowText />} />
+        <Route path="/show" element={<ShowText />} />
+        <Route path="/" element={<App />} />
         <Route path="*" element={<ShowText />} />
       </Routes>
     </HashRouter>
